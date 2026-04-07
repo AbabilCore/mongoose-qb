@@ -87,6 +87,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         <PageTransition>
           <div className="min-h-screen bg-background text-foreground">
