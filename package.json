@@ -1,27 +1,30 @@
 {
   "name": "mongoose-qb",
-  "version": "2.2.9",
+  "version": "2.3.0",
   "description": "A lightweight and flexible query builder for Mongoose, enabling easy chaining of search, filter, sort, field selection, and pagination operations.",
-  "scripts": {
-    "build": "sh scripts/build.sh",
-    "format": "biome format --write .",
-    "lint": "biome lint .",
-    "check": "biome check --write ."
-  },
+  "type": "module",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
-  "type": "module",
-  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
   "keywords": [
     "mongoose",
     "query-builder",
@@ -47,14 +50,11 @@
   },
   "homepage": "https://mongoose-qb.netlify.app",
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/node": "^24.1.0",
-    "rimraf": "^5.0.10",
-    "tsup": "^8.3.6",
-    "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "tsc": "^2.0.4",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.2"
   },
   "peerDependencies": {
-    "mongoose": "^8.16.4"
+    "mongoose": "^8.23.0"
   }
 }
