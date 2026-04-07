@@ -1,30 +1,14 @@
-import { defineConfig, Options } from "tsup";
+import { defineConfig } from "tsup";
 
-const sharedConfig: Options = {
-  esbuildOptions(options) {
-    options.mangleProps = /^_/;
-    options.mangleQuoted = true;
-    return options;
+export default defineConfig({
+  entry: ["src/index.ts"],
+  format: ["cjs", "esm"],
+  dts: {
+    compilerOptions: {
+      ignoreDeprecations: "6.0",
+    },
   },
-  dts: true,
-  clean: true,
-  minify: true,
+  splitting: false,
   sourcemap: true,
-};
-
-export default defineConfig([
-  {
-    ...sharedConfig,
-    entry: ["src/index.ts"],
-    format: ["esm"],
-    outExtension: () => ({ js: ".mjs" }),
-    outDir: "dist",
-  },
-  {
-    ...sharedConfig,
-    entry: ["src/index.cts"],
-    format: ["cjs"],
-    outExtension: () => ({ js: ".cjs" }),
-    outDir: "dist",
-  },
-]);
+  clean: true,
+});
